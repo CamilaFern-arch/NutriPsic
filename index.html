@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨Programa Universitario: Nutrición, Psicología y TCA 🌸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fcf8f6;
+            --primary-pastel: #f7d6c8;
+            --secondary-pastel: #e8dcd8;
+            --accent-pink: #f1b2a4;
+            --text-dark: #4a3e3d;
+            --text-light: #8a7a78;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-weight: 300;
+        }
+
+        /* Elementos Flotantes / Estética Cute */
+        .floating-emoji {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, #fff5f2 0%, #f7d6c8 100%);
+            border-bottom: 1px solid rgba(241, 178, 164, 0.3);
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navegación por pestañas interactiva */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background-color: var(--white);
+            border: 1px solid var(--primary-pastel);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background-color: var(--accent-pink);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(241, 178, 164, 0.4);
+        }
+
+        /* Contenido de los Módulos */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10deg); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .module-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(74, 62, 61, 0.04);
+            border: 1px solid rgba(232, 220, 216, 0.5);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-dark);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .focus-box {
+            background-color: #fff9f6;
+            border-left: 4px solid var(--accent-pink);
+            padding: 1.2rem;
+            border-radius: 0 15px 15px 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .focus-box h3 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-item {
+            background: #faf6f5;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px dashed var(--primary-pastel);
+        }
+
+        .skill-item strong {
+            color: var(--accent-pink);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        /* Sección Práctica / Interactiva */
+        .practical-exercise {
+            background: linear-gradient(to right, #ffffff, #fffcfb);
+            border: 1px solid var(--primary-pastel);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            background: var(--primary-pastel);
+            color: var(--text-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Estilos del Test */
+        .quiz-container {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(74, 62, 61, 0.04);
+        }
+
+        .question {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px collapsed #eee;
+        }
+
+        .question p {
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .options-list {
+            list-style: none;
+        }
+
+        .option-item {
+            margin-bottom: 0.8rem;
+        }
+
+        .option-item label {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #fdfcfc;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-item label:hover {
+            background: #fff5f2;
+            border-color: var(--accent-pink);
+        }
+
+        .option-item input[type="radio"] {
+            accent-color: var(--accent-pink);
+        }
+
+        .btn-submit {
+            background-color: var(--text-dark);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: block;
+            margin: 2rem auto 0;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--accent-pink);
+            transform: scale(1.02);
+        }
+
+        #quiz-result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        .success-bg { background-color: #e2f5ea; color: #270; }
+        .neutral-bg { background-color: #fff3cd; color: #856404; }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="floating-emoji" style="top: 10%; left: 5%;">🧠</div>
+    <div class="floating-emoji" style="top: 15%; right: 8%; animation-delay: 2s;">🌱</div>
+    <div class="floating-emoji" style="top: 40%; left: 3%; animation-delay: 4s;">🤍</div>
+    <div class="floating-emoji" style="top: 60%; right: 5%; animation-delay: 1s;">🍓</div>
+
+    <header>
+        <h1>Especialización en Psicología de la Alimentación</h1>
+        <p>Un viaje de aprendizaje práctico, empático y profesional ✨</p>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'mod1')">Módulo 1: Nutrición Humana</button>
+            <button class="tab-btn" onclick="openTab(event, 'mod2')">Módulo 2: Psicología Conductual</button>
+            <button class="tab-btn" onclick="openTab(event, 'mod3')">Módulo 3: Enfoque Clínico en TCA</button>
+            <button class="tab-btn" onclick="openTab(event, 'quiz-tab')">📝 Test de Evaluación</button>
+        </div>
+
+        <div id="mod1" class="content-section active">
+            <div class="module-card">
+                <h2>🥑 Módulo 1: Nutrición Humana y Dietética Aplicada</h2>
+                <div class="focus-box">
+                    <h3>Foco Principal del Aprendizaje</h3>
+                    <p>Comprender que la nutrición no son solo números o calorías, sino procesos bioquímicos y metabólicos que sostienen la vida y afectan de forma directa al cerebro y las emociones.</p>
+                </div>
+
+                <p>Inspirado en los mejores currículos de FP Superior, este módulo te enseña a estructurar planes nutricionales reales, entender los macronutrientes y desmontar mitos peligrosos de la cultura de la dieta.</p>
+                
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <strong>Bioquímica de los Alimentos</strong>
+                        Aprende cómo el cuerpo descompone carbohidratos, grasas y proteínas, y cómo la glucosa impacta la estabilidad mental.
+                    </div>
+                    <div class="skill-item">
+                        <strong>Eje Intestino-Cerebro</strong>
+                        Estudio de la microbiota intestinal: cómo la producción de serotonina en el intestino regula el estado de ánimo.
+                    </div>
+                </div>
+
+                <div class="practical-exercise">
+                    <span class="badge">Guía Práctica de Estudio</span>
+                    <p><strong>💡 Caso práctico para resolver en tu cuaderno:</strong> Imagina una paciente que sufre fatiga extrema por las tardes y ansiedad por el dulce. Analiza si su consumo de grasas saludables e hidratos complejos por la mañana es insuficiente.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="mod2" class="content-section">
+            <div class="module-card">
+                <h2>🧠 Módulo 2: Psicología de la Conducta y Emociones</h2>
+                <div class="focus-box">
+                    <h3>Foco Principal del Aprendizaje</h3>
+                    <p>Analizar la relación psicológica que los seres humanos construimos con la comida, utilizando la alimentación como un mecanismo de copia emocional.</p>
+                </div>
+
+                <p>Este bloque adapta técnicas psicológicas para entender el "hambre emocional", la autopercepción de la imagen corporal y los disparadores del estrés en el ámbito cotidiano.</p>
+                
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <strong>Hambre Emocional vs. Fisiológica</strong>
+                        Herramientas diagnósticas para identificar si el impulso de comer nace del estómago o de una necesidad de confort mental.
+                    </div>
+                    <div class="skill-item">
+                        <strong>Terapia Cognitivo-Conductual (TCC)</strong>
+                        Comprensión de los pensamientos automáticos negativos relacionados con la culpa post-ingesta y la restricción.
+                    </div>
+                </div>
+
+                <div class="practical-exercise">
+                    <span class="badge">Guía Práctica de Estudio</span>
+                    <p><strong>💡 Ejercicio de Autoregistro:</strong> Practica la técnica del diario de alimentación consciente. Anota no solo qué comes, sino qué sentías justo antes de comer (aburrimiento, tristeza, soledad, alegría).</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="mod3" class="content-section">
+            <div class="module-card">
+                <h2>🩺 Módulo 3: Prevención e Intervención Clínica en TCA</h2>
+                <div class="focus-box">
+                    <h3>Foco Principal del Aprendizaje</h3>
+                    <p>Reconocer las señales de alerta tempranas, los criterios diagnósticos (DSM-5) y el abordaje ético y multidisciplinar de la Anorexia, Bulimia y el Trastorno por Atracón.</p>
+                </div>
+
+                <p>Un módulo con enfoque altamente humano y profesional para aprender a ayudar sin juzgar, abordando las patologías complejas desde una perspectiva clínica y empática.</p>
+                
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <strong>Criterios del DSM-5</strong>
+                        Diferenciación técnica y clínica entre la Anorexia Nerviosa, Bulimia Nerviosa y el Trastorno por Atracón.
+                    </div>
+                    <div class="skill-item">
+                        <strong>Protocolo de Entrevista Clínica</strong>
+                        Cómo hablar con un paciente bajo sospecha de TCA usando lenguaje no estigmatizante y validando su dolor.
+                    </div>
+                </div>
+
+                <div class="practical-exercise">
+                    <span class="badge">Guía Práctica de Estudio</span>
+                    <p><strong>💡 Regla de Oro del Profesional:</strong> Nunca comentes sobre el cuerpo del paciente, ni siquiera para halagarle. En procesos de TCA, cualquier comentario sobre el físico refuerza la hiperfijación corporal.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="quiz-tab" class="content-section">
+            <div class="quiz-container">
+                <h2>📝 Test de Autoevaluación</h2>
+                <p style="color: var(--text-light); margin-bottom: 2rem;">Ponte a prueba para ver cómo vas reteniendo los conceptos clave de la guía de estudio.</p>
+                
+                <form id="quiz-form">
+                    <div class="question">
+                        <p>1. ¿Dónde se produce la mayor parte de la serotonina (neurotransmisor del bienestar) en nuestro cuerpo?</p>
+                        <ul class="options-list">
+                            <li class="option-item"><label><input type="radio" name="q1" value="incorrect"> En la corteza prefrontal del cerebro.</label></li>
+                            <li class="option-item"><label><input type="radio" name="q1" value="correct"> En el tracto gastrointestinal (microbiota).</label></li>
+                            <li class="option-item"><label><input type="radio" name="q1" value="incorrect"> En el tejido adiposo.</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question">
+                        <p>2. ¿Cuál es una característica principal del hambre emocional?</p>
+                        <ul class="options-list">
+                            <li class="option-item"><label><input type="radio" name="q2" value="incorrect"> Aparece de forma gradual y tolera esperar.</label></li>
+                            <li class="option-item"><label><input type="radio" name="q2" value="correct"> Aparece de forma repentina y urge satisfacerse con alimentos específicos.</label></li>
+                            <li class="option-item"><label><input type="radio" name="q2" value="incorrect"> Desaparece por completo al beber un vaso de agua.</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="question">
+                        <p>3. Ante la sospecha de un TCA, ¿cuál es la mejor praxis comunicativa?</p>
+                        <ul class="options-list">
+                            <li class="option-item"><label><input type="radio" name="q3" value="incorrect"> Decirle al paciente que se ve mucho mejor cuando come.</label></li>
+                            <li class="option-item"><label><input type="radio" name="q3" value="incorrect"> Centrar la conversación exclusivamente en el peso y las calorías.</label></li>
+                            <li class="option-item"><label><input type="radio" name="q3" value="correct"> Evitar comentarios sobre su aspecto físico y validar sus emociones de fondo.</label></li>
+                        </ul>
+                    </div>
+
+                    <button type="button" class="btn-submit" onclick="checkAnswers()">Enviar Respuestas 🌸</button>
+                </form>
+
+                <div id="quiz-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Hecho con 🤍 para mentes brillantes que cuidan de otras mentes.
+    </footer>
+
+    <script>
+        // Función para cambiar de pestaña dinámicamente
+        function openTab(evt, tabName) {
+            var i, contentSections, tabButtons;
+            
+            contentSections = document.getElementsByClassName("content-section");
+            for (i = 0; i < contentSections.length; i++) {
+                contentSections[i].style.display = "none";
+                contentSections[i].classList.remove("active");
+            }
+            
+            tabButtons = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            
+            var targetTab = document.getElementById(tabName);
+            targetTab.style.display = "block";
+            setTimeout(() => {
+                targetTab.classList.add("active");
+            }, 10);
+            
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Sistema interactivo de evaluación del Test
+        function checkAnswers() {
+            const form = document.getElementById('quiz-form');
+            const resultDiv = document.getElementById('quiz-result');
+            
+            let totalQuestions = 3;
+            let score = 0;
+            
+            // Validar respuestas
+            let q1 = form.elements['q1'].value;
+            let q2 = form.elements['q2'].value;
+            let q3 = form.elements['q3'].value;
+            
+            if(!q1 || !q2 || !q3) {
+                resultDiv.style.display = "block";
+                resultDiv.className = "neutral-bg";
+                resultDiv.innerHTML = "Por favor, responde a todas las preguntas antes de evaluar. ✨";
+                return;
+            }
+            
+            if(q1 === "correct") score++;
+            if(q2 === "correct") score++;
+            if(q3 === "correct") score++;
+            
+            resultDiv.style.display = "block";
+            
+            if(score === totalQuestions) {
+                resultDiv.className = "success-bg";
+                resultDiv.innerHTML = `¡Increíble! 🎉 Sacaste ${score}/${totalQuestions}. Tienes una excelente base comprensiva y empática para tratar la psicología de la alimentación.`;
+            } else {
+                resultDiv.className = "neutral-bg";
+                resultDiv.innerHTML = `Buen intento 🧠 Obtuviste ${score}/${totalQuestions}. Te sugiero repasar las guías prácticas de cada módulo y volver a intentarlo. ¡El aprendizaje es un proceso hermoso!`;
+            }
+        }
+    </script>
+</body>
+</html>
